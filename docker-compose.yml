@@ -1,0 +1,21 @@
+version: "3.7"
+
+networks:
+  backend_network:
+
+services:
+  backend:
+    image: backend-celsia:1.0
+    build: ./backend/
+    working_dir: /home/app
+    expose:
+      - "8000"
+    ports:
+      - 8000:8000
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend:/home/app
+    networks:
+      - backend_network
+    command: "python3 manage.py runserver 0.0.0.0:8000"

@@ -44,6 +44,8 @@ class CsvFileApiView(APIView):
             response[str(device)]['avg'] = response[device]['avg']/60
 
           return Response(response)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
       else:
         return Response(status=status.HTTP_403_FORBIDDEN)
 
